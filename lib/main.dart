@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'features/trips/presentation/pages/trip_list_page.dart';
+import 'package:trips_simulator/core/routes/app_routes.dart';
 import 'trip_remote_data_source.dart' as di;
 
 Future<void> main() async {
@@ -13,13 +13,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Trips Simulate',
+    return MaterialApp.router(
+      title: 'Trips Simulator',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0781E5)),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
-      home: const TripListPage(),
+      routerConfig: AppRoutes.router,
     );
   }
 }

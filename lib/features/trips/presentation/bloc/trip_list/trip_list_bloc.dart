@@ -1,4 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/enums/trip_list_status.dart';
 import 'trip_list_event.dart';
 import 'trip_list_state.dart';
 import '../../../../../core/usecase/usecase.dart';

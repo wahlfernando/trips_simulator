@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:trips_simulator/core/routes/app_routes.dart';
 import 'package:trips_simulator/features/trips/presentation/bloc/trip_list/trip_list_bloc.dart';
 import 'package:trips_simulator/features/trips/presentation/bloc/trip_list/trip_list_event.dart';
 import 'package:trips_simulator/features/trips/presentation/bloc/trip_list/trip_list_state.dart';
-import 'package:trips_simulator/features/trips/presentation/pages/trip_detail_page.dart';
 import 'package:trips_simulator/features/trips/presentation/widgets/status_chip.dart';
+import '../../../../core/enums/trip_list_status.dart';
 import '../../../../trip_remote_data_source.dart' as di;
 
 class TripListPage extends StatelessWidget {
@@ -54,11 +56,7 @@ class TripListPage extends StatelessWidget {
                       ),
                       trailing: StatusChip(status: trip.status),
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (_) => TripDetailPage(tripId: trip.id),
-                          ),
-                        );
+                        context.push('${AppRoutes.tripDetail}/${trip.id}');
                       },
                     );
                   },

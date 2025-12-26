@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import '../../../domain/entities/trip.dart';
-
-enum TripListStatus { initial, loading, success, empty, failure }
+import '../../../../../core/enums/trip_list_status.dart';
 
 class TripListState extends Equatable {
   final TripListStatus status;
