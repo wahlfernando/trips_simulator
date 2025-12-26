@@ -12,6 +12,7 @@ class TripDetailBloc extends Bloc<TripDetailEvent, TripDetailState> {
   TripDetailBloc({required this.getTripDetail})
     : super(const TripDetailState()) {
     on<TripDetailStarted>(_onStarted);
+    on<TripDetailTicked>(_onTicked);
   }
 
   Future<void> _onStarted(
@@ -26,6 +27,13 @@ class TripDetailBloc extends Bloc<TripDetailEvent, TripDetailState> {
       const Duration(seconds: 5),
       (_) => add(TripDetailTicked(event.tripId)),
     );
+  }
+
+  Future<void> _onTicked(
+    TripDetailTicked event,
+    Emitter<TripDetailState> emit,
+  ) async {
+    await _fetchDetail(event.tripId, emit);
   }
 
   Future<void> _fetchDetail(String id, Emitter<TripDetailState> emit) async {
