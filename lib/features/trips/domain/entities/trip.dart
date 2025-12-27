@@ -1,4 +1,4 @@
-enum TripStatus { scheduled, inProgress, finished }
+import '../../../../core/enums/trip_status.dart';
 
 class Trip {
   final String id;
@@ -25,5 +25,18 @@ class Trip {
       departureTime: departureTime ?? this.departureTime,
       status: status ?? this.status,
     );
+  }
+
+  String get formattedDepartureDate {
+    final day = departureTime.day.toString().padLeft(2, '0');
+    final month = departureTime.month.toString().padLeft(2, '0');
+    final year = departureTime.year.toString();
+    return '$day/$month/$year';
+  }
+
+  String get formattedDepartureTime {
+    final hour = departureTime.hour.toString().padLeft(2, '0');
+    final minute = departureTime.minute.toString().padLeft(2, '0');
+    return '$hour:$minute';
   }
 }

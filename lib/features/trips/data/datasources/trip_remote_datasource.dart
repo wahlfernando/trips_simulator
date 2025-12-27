@@ -1,6 +1,7 @@
 import 'dart:async';
+import 'package:trips_simulator/core/shared/helpers/helpers.dart';
+
 import '../models/trip_model.dart';
-import '../../domain/entities/trip.dart';
 
 abstract class TripRemoteDataSource {
   Future<List<TripModel>> getTrips();
@@ -12,20 +13,26 @@ class TripRemoteDataSourceFake implements TripRemoteDataSource {
     TripModel(
       id: '1',
       lineName: 'Linha A - Centro',
-      departureTime: DateTime.now().add(const Duration(minutes: 10)),
-      status: TripStatus.scheduled,
+      departureTime: DateTime.now()
+          .add(const Duration(minutes: 10))
+          .toIso8601String(),
+      status: 'scheduled',
     ),
     TripModel(
       id: '2',
       lineName: 'Linha B - Aeroporto',
-      departureTime: DateTime.now().subtract(const Duration(minutes: 5)),
-      status: TripStatus.inProgress,
+      departureTime: DateTime.now()
+          .subtract(const Duration(minutes: 5))
+          .toIso8601String(),
+      status: 'in_progress',
     ),
     TripModel(
       id: '3',
       lineName: 'Linha C - Bairro',
-      departureTime: DateTime.now().subtract(const Duration(minutes: 40)),
-      status: TripStatus.finished,
+      departureTime: DateTime.now()
+          .subtract(const Duration(minutes: 40))
+          .toIso8601String(),
+      status: 'finished',
     ),
   ];
 
@@ -41,7 +48,7 @@ class TripRemoteDataSourceFake implements TripRemoteDataSource {
 
     final trip = _trips.firstWhere((t) => t.id == id);
 
-    final updatedStatus = _simulateStatusChange(trip);
+    final updatedStatus = Helpers.simulateStatusChange(trip.status);
 
     final updatedTrip = TripModel(
       id: trip.id,
@@ -54,16 +61,5 @@ class TripRemoteDataSourceFake implements TripRemoteDataSource {
     _trips[index] = updatedTrip;
 
     return updatedTrip;
-  }
-
-  TripStatus _simulateStatusChange(TripModel trip) {
-    switch (trip.status) {
-      case TripStatus.scheduled:
-        return TripStatus.inProgress;
-      case TripStatus.inProgress:
-        return TripStatus.finished;
-      case TripStatus.finished:
-        return TripStatus.finished;
-    }
   }
 }

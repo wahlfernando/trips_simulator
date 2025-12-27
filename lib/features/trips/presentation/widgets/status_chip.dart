@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:trips_simulator/features/trips/domain/entities/trip.dart';
+import '../../../../core/enums/trip_status.dart';
 
 class StatusChip extends StatelessWidget {
   final TripStatus status;
@@ -13,15 +13,15 @@ class StatusChip extends StatelessWidget {
 
     switch (status) {
       case TripStatus.scheduled:
-        color = Colors.blue;
+        color = const Color(0xFF2196F3);
         label = 'Scheduled';
         break;
       case TripStatus.inProgress:
-        color = Colors.orange;
+        color = const Color(0xFFFF9800);
         label = 'In progress';
         break;
       case TripStatus.finished:
-        color = Colors.green;
+        color = const Color(0xFF4CAF50);
         label = 'Finished';
         break;
     }

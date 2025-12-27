@@ -38,14 +38,14 @@ class TripDetailPage extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('ID: ${trip.id}'),
-                  const SizedBox(height: 8),
                   Text(
                     'Linha: ${trip.lineName}',
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                   const SizedBox(height: 8),
-                  Text('Horário de saída: ${trip.departureTime}'),
+                  Text(
+                    'Horário de saída: ${trip.formattedDepartureDate} às ${trip.formattedDepartureTime}',
+                  ),
                   const SizedBox(height: 16),
                   Row(
                     children: [
