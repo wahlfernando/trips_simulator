@@ -32,9 +32,9 @@ class AppTextStyle {
     color: AppColors.black,
   );
 
-  static TextStyle numberCard = const TextStyle(
-    fontSize: 20,
+  static TextStyle textTripCard = const TextStyle(
+    fontSize: 24,
     fontWeight: FontWeight.bold,
-    color: AppColors.black,
+    color: AppColors.blackTitle,
   );
 }
