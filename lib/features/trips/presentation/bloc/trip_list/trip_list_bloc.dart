@@ -9,10 +9,9 @@ class TripListBloc extends Bloc<TripListEvent, TripListState> {
   final GetTrips getTrips;
 
   TripListBloc({required this.getTrips}) : super(const TripListState()) {
-    // <-- Tirei o selectedFilter: null
     on<TripListRequested>(_onRequested);
     on<TripListRefreshed>(_onRequested);
-    on<ChangeFilterEvent>(_onChangeFilter); // <-- Adicionei o handler do filtro
+    on<ChangeFilterEvent>(_onChangeFilter);
   }
 
   Future<void> _onRequested(
@@ -40,7 +39,6 @@ class TripListBloc extends Bloc<TripListEvent, TripListState> {
     );
   }
 
-  // Novo método para trocar o filtro
   void _onChangeFilter(ChangeFilterEvent event, Emitter<TripListState> emit) {
     emit(state.copyWith(selectedFilter: event.filter));
   }

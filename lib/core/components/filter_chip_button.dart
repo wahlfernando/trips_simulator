@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/shared/theme/app_text_style.dart';
-import '../../../../core/shared/theme/color_style.dart';
+import '../shared/theme/app_text_style.dart';
+import '../shared/theme/color_style.dart';
 
 class FilterChipButton extends StatelessWidget {
   final String label;
