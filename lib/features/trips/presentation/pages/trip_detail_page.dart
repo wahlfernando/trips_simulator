@@ -3,20 +3,24 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:trips_simulator/features/trips/presentation/bloc/trip_detail/trip_detail_bloc.dart';
 import 'package:trips_simulator/features/trips/presentation/bloc/trip_detail/trip_detail_event.dart';
 import 'package:trips_simulator/features/trips/presentation/bloc/trip_detail/trip_detail_state.dart';
+import 'package:trips_simulator/features/trips/presentation/viewmodel/trips_view_model.dart';
 import 'package:trips_simulator/features/trips/presentation/widgets/status_chip.dart';
-import '../../../../trip_remote_data_source.dart' as di;
 
 class TripDetailPage extends StatelessWidget {
   final String tripId;
+  final TripsViewModel viewModel;
 
-  const TripDetailPage({super.key, required this.tripId});
+  const TripDetailPage({
+    super.key,
+    required this.tripId,
+    required this.viewModel,
+  });
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) =>
-          TripDetailBloc(getTripDetail: di.getTripDetailUseCase)
-            ..add(TripDetailStarted(tripId)),
+          viewModel.createTripDetailBloc()..add(TripDetailStarted(tripId)),
       child: Scaffold(
         appBar: AppBar(title: const Text('Detalhe da Viagem')),
         body: BlocBuilder<TripDetailBloc, TripDetailState>(

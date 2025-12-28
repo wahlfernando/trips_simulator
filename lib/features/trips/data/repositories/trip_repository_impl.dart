@@ -25,8 +25,9 @@ class TripRepositoryImpl implements TripRepository {
   Future<Either<Failure, Trip>> getTripDetail(String id) async {
     try {
       final model = await remoteDataSource.getTripDetail(id);
-      final dto = TripMapper.fromModelToDTO(model);
-      final entity = TripMapper.fromDTOToEntity(dto);
+      final entity = TripMapper.fromDTOToEntity(
+        TripMapper.fromModelToDTO(model),
+      );
       return Right(entity);
     } catch (e) {
       return Left(ServerFailure('Falha ao buscar detalhes da viagem'));

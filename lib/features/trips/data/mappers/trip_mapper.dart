@@ -1,4 +1,5 @@
-import '../../../../core/shared/helpers/helpers.dart';
+import 'package:trips_simulator/core/enums/trip_status.dart';
+
 import '../../domain/dto/trip.dto.dart';
 import '../../domain/entities/trip.dart';
 import '../models/trip_model.dart';
@@ -6,7 +7,7 @@ import '../models/trip_model.dart';
 class TripMapper {
   static TripDto fromAPIToDTO(Map<String, dynamic> data) {
     return TripDto(
-      id: data['id'] as String,
+      id: data['id'].toString(),
       lineName: data['lineName'] as String,
       departureTime: data['departureTime'] as String,
       status: data['status'] as String,
@@ -27,7 +28,7 @@ class TripMapper {
       id: dto.id,
       lineName: dto.lineName,
       departureTime: DateTime.parse(dto.departureTime),
-      status: Helpers.statusFromString(dto.status),
+      status: _statusFromString(dto.status),
     );
   }
 
@@ -36,7 +37,7 @@ class TripMapper {
       id: entity.id,
       lineName: entity.lineName,
       departureTime: entity.departureTime.toIso8601String(),
-      status: Helpers.statusToString(entity.status),
+      status: _statusToString(entity.status),
     );
   }
 
@@ -51,20 +52,38 @@ class TripMapper {
 
   static Trip fromDBToEntity(Map<String, dynamic> data) {
     return Trip(
-      id: data['id'] as String,
+      id: data['id'].toString(),
       lineName: data['line_name'] as String,
       departureTime: DateTime.parse(data['departure_time'] as String),
-      status: Helpers.statusFromString(data['status'] as String),
+      status: _statusFromString(data['status'] as String),
     );
   }
 
-  static List<Trip> fromDTOListToEntityList(List<TripDto> dtos) {
-    return dtos.map(fromDTOToEntity).toList();
+  static List<Trip> fromModelListToEntityList(List<TripModel> models) {
+    return models.map((m) => fromDTOToEntity(fromModelToDTO(m))).toList();
   }
 
-  static List<Trip> fromModelListToEntityList(List<TripModel> models) {
-    return models
-        .map((model) => fromDTOToEntity(fromModelToDTO(model)))
-        .toList();
+  static TripStatus _statusFromString(String value) {
+    switch (value) {
+      case 'scheduled':
+        return TripStatus.scheduled;
+      case 'in_progress':
+        return TripStatus.inProgress;
+      case 'finished':
+        return TripStatus.finished;
+      default:
+        return TripStatus.scheduled;
+    }
+  }
+
+  static String _statusToString(TripStatus status) {
+    switch (status) {
+      case TripStatus.scheduled:
+        return 'scheduled';
+      case TripStatus.inProgress:
+        return 'in_progress';
+      case TripStatus.finished:
+        return 'finished';
+    }
   }
 }

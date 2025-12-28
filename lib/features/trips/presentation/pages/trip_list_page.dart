@@ -4,24 +4,25 @@ import 'package:trips_simulator/core/shared/theme/app_text_style.dart';
 import 'package:trips_simulator/features/trips/presentation/bloc/trip_list/trip_list_bloc.dart';
 import 'package:trips_simulator/features/trips/presentation/bloc/trip_list/trip_list_event.dart';
 import 'package:trips_simulator/features/trips/presentation/bloc/trip_list/trip_list_state.dart';
+import 'package:trips_simulator/features/trips/presentation/viewmodel/trips_view_model.dart';
 import 'package:trips_simulator/features/trips/presentation/widgets/failure_page.dart';
 import 'package:trips_simulator/features/trips/presentation/widgets/success_page.dart';
-import '../../../../core/enums/trip_list_status.dart';
-import '../../../../trip_remote_data_source.dart' as di;
+import 'package:trips_simulator/core/enums/trip_list_status.dart';
 
 class TripListPage extends StatelessWidget {
-  const TripListPage({super.key});
+  final TripsViewModel viewModel;
+
+  const TripListPage({super.key, required this.viewModel});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) =>
-          TripListBloc(getTrips: di.getTripsUseCase)..add(TripListRequested()),
+      create: (_) => viewModel.createTripListBloc()..add(TripListRequested()),
       child: Scaffold(
         appBar: AppBar(
           title: Column(
             mainAxisAlignment: .center,
-            crossAxisAlignment: .start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("Lista de Viagens", style: AppTextStyle.titleCustonBar),
               Text(

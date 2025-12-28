@@ -10,7 +10,7 @@ late GetTrips getTripsUseCase;
 late GetTripDetail getTripDetailUseCase;
 
 Future<void> init() async {
-  tripRemoteDataSource = TripRemoteDataSourceFake();
+  // tripRemoteDataSource = TripRemoteDataSourceHttp(client: null);
   tripRepository = TripRepositoryImpl(remoteDataSource: tripRemoteDataSource);
   getTripsUseCase = GetTrips(tripRepository);
   getTripDetailUseCase = GetTripDetail(tripRepository);

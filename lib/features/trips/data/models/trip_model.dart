@@ -13,7 +13,7 @@ class TripModel {
 
   factory TripModel.fromJson(Map<String, dynamic> json) {
     return TripModel(
-      id: json['id'] as String,
+      id: json['id'].toString(),
       lineName: json['lineName'] as String,
       departureTime: json['departureTime'] as String,
       status: json['status'] as String,
