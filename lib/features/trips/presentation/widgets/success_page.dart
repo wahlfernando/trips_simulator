@@ -22,7 +22,7 @@ class SuccessPage extends StatelessWidget {
             Expanded(
               child: ListView.separated(
                 itemCount: currentState.trips.length,
-                separatorBuilder: (_, _) => const SizedBox(height: 8),
+                separatorBuilder: (_, _) => const SizedBox.shrink(),
                 itemBuilder: (context, index) {
                   return TripCard(trip: currentState.trips[index]);
                 },

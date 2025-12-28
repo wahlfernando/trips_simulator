@@ -1,8 +1,8 @@
 import 'package:dartz/dartz.dart';
 import '../../../../core/error/failures.dart';
+import '../../domain/datasources/trip_remote_datasource.dart';
 import '../../domain/entities/trip.dart';
 import '../../domain/repositories/trip_repository.dart';
-import '../datasources/trip_remote_datasource.dart';
 import '../mappers/trip_mapper.dart';
 
 class TripRepositoryImpl implements TripRepository {

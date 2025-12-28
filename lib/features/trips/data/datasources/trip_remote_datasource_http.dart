@@ -1,12 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:trips_simulator/core/constants/base_connect/base_connect.dart';
+import '../../domain/datasources/trip_remote_datasource.dart';
 import '../models/trip_model.dart';
-
-abstract class TripRemoteDataSource {
-  Future<List<TripModel>> getTrips();
-  Future<TripModel> getTripDetail(String id);
-}
 
 class TripRemoteDataSourceHttp implements TripRemoteDataSource {
   final http.Client client;

@@ -14,7 +14,7 @@ class TripCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.only(bottom: 4, top: 4, left: 16, right: 16),
       child: Container(
         decoration: BoxDecoration(
           border: Border.all(color: AppColors.black50),

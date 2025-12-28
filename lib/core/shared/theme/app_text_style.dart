@@ -32,6 +32,12 @@ class AppTextStyle {
     color: AppColors.black,
   );
 
+  static TextStyle textDetailCard = const TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w500,
+    color: AppColors.black80,
+  );
+
   static TextStyle textTripCard = const TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.bold,
