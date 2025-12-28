@@ -26,46 +26,50 @@ class TripCard extends StatelessWidget {
           },
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Column(
-              spacing: 8,
+            child: Row(
+              crossAxisAlignment: .center,
               children: [
-                Row(
+                Column(
+                  crossAxisAlignment: .start,
                   spacing: 8,
                   children: [
-                    Container(
-                      height: 40,
-                      width: 40,
-                      decoration: BoxDecoration(
-                        color: AppColors.black50,
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: Icon(Icons.car_repair, color: AppColors.white),
+                    Row(
+                      crossAxisAlignment: .end,
+                      spacing: 8,
+                      children: [
+                        Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            color: AppColors.black50,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Icon(Icons.car_repair, color: AppColors.white),
+                        ),
+                        Text(trip.lineName, style: AppTextStyle.textTripCard),
+                      ],
                     ),
-                    Text(trip.lineName, style: AppTextStyle.textTripCard),
-                  ],
-                ),
-                Row(
-                  spacing: 6,
-                  children: [
-                    Icon(
-                      Icons.calendar_month_outlined,
-                      color: AppColors.black50,
+                    Row(
+                      spacing: 6,
+                      children: [
+                        Icon(
+                          Icons.calendar_month_outlined,
+                          color: AppColors.black50,
+                        ),
+                        Text(trip.formattedDepartureDate),
+                        const SizedBox(width: 8),
+                        Icon(Icons.access_time, color: AppColors.black50),
+                        Text(trip.formattedDepartureTime),
+                      ],
                     ),
-                    Text(trip.formattedDepartureDate),
-                    const SizedBox(width: 8),
-                    Icon(Icons.access_time, color: AppColors.black50),
-                    Text(trip.formattedDepartureTime),
-                  ],
-                ),
-                Row(
-                  children: [
                     StatusChip(status: trip.status),
-                    const Spacer(),
-                    Icon(
-                      Icons.arrow_forward_ios_rounded,
-                      color: AppColors.black50,
-                    ),
                   ],
+                ),
+                const Spacer(),
+                Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  color: AppColors.black50,
+                  size: 40,
                 ),
               ],
             ),
