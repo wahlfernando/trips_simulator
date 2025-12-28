@@ -1,3 +1,4 @@
+import 'package:http/http.dart' as http;
 import 'features/trips/data/datasources/trip_remote_datasource.dart';
 import 'features/trips/data/repositories/trip_repository_impl.dart';
 import 'features/trips/domain/repositories/trip_repository.dart';
@@ -10,8 +11,12 @@ late GetTrips getTripsUseCase;
 late GetTripDetail getTripDetailUseCase;
 
 Future<void> init() async {
-  // tripRemoteDataSource = TripRemoteDataSourceHttp(client: null);
+  final client = http.Client();
+
+  tripRemoteDataSource = TripRemoteDataSourceHttp(client: client);
+
   tripRepository = TripRepositoryImpl(remoteDataSource: tripRemoteDataSource);
+
   getTripsUseCase = GetTrips(tripRepository);
   getTripDetailUseCase = GetTripDetail(tripRepository);
 }

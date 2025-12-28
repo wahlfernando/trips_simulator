@@ -7,16 +7,11 @@ import 'trip_remote_data_source.dart' as di;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  final tripsModule = TripsModule();
-
-  runApp(MyApp(tripsModule: tripsModule));
-  await dotenv.load(fileName: "config/envs/.env.hml");
+  await dotenv.load(fileName: BaseConnect.envPath);
   BaseConnect.setBaseUrlFromEnv();
-  WidgetsFlutterBinding.ensureInitialized();
-  // await di.init();
-
-  // runApp(const MyApp());
+  await di.init();
+  final tripsModule = TripsModule();
+  runApp(MyApp(tripsModule: tripsModule));
 }
 
 class MyApp extends StatelessWidget {
